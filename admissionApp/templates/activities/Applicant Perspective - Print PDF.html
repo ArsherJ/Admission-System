@@ -1,0 +1,30 @@
+{% extends 'activities/Applicant Perspective - Home.html' %}
+{% load static %}
+            {%block content%}
+            <div id="aphcontent" class="content">
+                <br>
+                <br>
+                <h4>Report PDF</h4>
+                <hr id="whitehr">
+                <div>
+                    <div class="container">
+                        <div class="card" id="infocard">
+                            <h3 class="card-title" id="aphtitle">Pre - Admission Checklist</h3>
+                            <hr>
+                            <form method="POST" action="">
+                              {% csrf_token %}
+                              <div class="mt-4 text-center">
+                                <button type="submit" style="background-color: #EF3A25; color: white;" class="btn px-5">Print PDF</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static '/Javascript/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static '/Javascript/js/functions.js' %}"></script>
+
+</body>
+{% endblock %}

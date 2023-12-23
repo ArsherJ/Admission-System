@@ -1,0 +1,52 @@
+#login_btn {
+    color: #EF3A25;
+    font-size: medium;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+#login_btn:hover {
+    text-shadow: 0 0 10px rgba(128, 128, 128, 0.5);
+    color: rgba(239, 58, 37, 0.9);
+
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+#joinus_btn {
+    background-color: #EF3A25;
+    color: white;
+    border: none;
+    font-size: medium;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+#joinus_btn:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: rgba(239, 58, 37, 0.9);
+
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+#card_container {
+    padding: 3%;
+}
+
+hr {
+    background-color: red;
+}
+
+#about {
+    padding: 0% 0% 3% 0%;
+}
+
+.bg-tup {
+    background-color: #EF3A25 !important;
+}
+
+#footer{
+    padding: relative;
+}

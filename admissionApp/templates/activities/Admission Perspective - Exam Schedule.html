@@ -1,0 +1,172 @@
+{% extends 'activities/Admission Perspective - Home.html' %}
+{% load static %}
+
+            {% block content %}
+            <div style="color:white;">
+                <!-- spacing  --><br><br>
+                <h1 class="mt-4"><i class="fa fa-calendar-alt me-1"></i>Examination Schedule</h1>
+                <hr id="whitehr">
+                <h6>The Table below shows the Examination Schedule of applicants</h6>
+            </div>
+        </div>
+        <div class="container-grid">
+            <div class="card">
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="container text-black">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="text-left">
+                                        <button style="margin-bottom: 15px; margin-right: 10px;" type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#addSched"><span class="fa fa-calendar-alt"></span> Add Schedule</button>
+                                        <!-- <button style="margin-bottom: 15px;" type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#deleteApplicant"><span class="fa fa-user-minus"></span> Delete</button> -->
+                                    </div>
+                                    <div class="modal fade" id="addSched" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header text-center">
+                                                    <h5 class="modal-title fa fa-user-edit" id="exampleModalLabel">Add Exam Schedule</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body mx-4">
+                                                    <form method="POST" onsubmit="get_cred($('#type').val());">
+                                                        {% csrf_token %}
+                                                        <div class="md-form">
+                                                            <label id="user-lbl" data-error="wrong" data-success="right">Applicant: </label> {{ form.examiner }}
+                                                        </div>
+                                                        <div class="md-form">
+                                                            <label id="user-lbl" data-error="wrong" data-success="right">Exam Date:</label> {{ form.exam_date }}
+                                                        </div>
+                                                        <div class="md-form">
+                                                            <label id="user-lbl" data-error="wrong" data-success="right">Exam Time:</label> {{ form.exam_time }}
+                                                        </div>
+                                                        <div class="md-form">
+                                                            <label id="user-lbl" data-error="wrong" data-success="right">Room Assignment:</label> {{ form.room }}
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-primary" style="background-color: #EF3A25;">Add</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="modal fade" id="addSched" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header text-center">
+                                                    <h5 class="modal-title fa fa-user-edit" id="exampleModalLabel">EDIT INFORMATION</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body mx-4">
+                                                    <form method="POST" onsubmit="get_cred($('#type').val()); return false;">
+                                                        <div class="md-form">
+                                                            <label id="user-lbl" data-error="wrong" data-success="right">NAME:</label>
+                                                            <input id="email" type="email" class="form-control validate">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="table-responsive">
+                                        <table class="table table-sm" id="table_applicants">
+                                            <thead>
+                                                <tr>
+                                                    <th >No.</th>
+                                                    <th scope="col">Name of Applicant </th>
+                                                    <th scope="col">Course(1st Choice)</th>
+                                                    <th scope="col">SHS Track/Strand</th>
+                                                    <th scope="col">Sex</th>
+                                                    <th scope="col">Exam Date</th>
+                                                    <th scope="col">Exam Time</th>
+                                                    <th scope="col">Room Assignment</th>
+                                                    <th scope="col" style="text-align: center;">Action</th>
+
+                                                    <div>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for applicant in applicants %}
+                                                <tr>
+                                                    <td></td>
+                                                    <td>{{ applicant.examiner.user.first_name }} {{ applicant.examiner.user.last_name }}</td>
+                                                    <td>{{ applicant.examiner.appli_course }}</td>
+                                                    <td>{{ applicant.examiner.appli_strand }}</td>
+                                                    <td>{{ applicant.examiner.appli_sex }}</td>
+                                                    <td>{{ applicant.exam_date }}</td>
+                                                    <td>{{ applicant.exam_time }}</td>
+                                                    <td>Room {{ applicant.room }}</td>
+                                                    <td style="text-align: center;">
+                                                        <div>
+                                                            <a href="{% url 'tupadmin_editexam' applicant.id %}"><button type="button" style="background-color: #EF3A25; color: white;" class="btn">Update</button></a>
+                                                            <a href="{% url 'tupadmin_deleteexam' applicant.id %}"><button type="button" style="background-color: #EF3A25; color: white;" class="btn">Delete</button></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <!-- spacing --><br><br>
+        </div>
+
+        <script src="{% static '/Javascript/js/bootstrap.bundle.min.js' %}"></script>
+        <script>
+            var t = $('#table_applicants').DataTable({
+                dom: 'Blfrtip',
+                info: 'true',
+                buttons: [
+                    {
+                    extend: 'copyHtml5',
+                    exportOptions: {
+                        columns: [ 1, 2, 3, 4, 5, 6, 7 ]
+                    }
+                }, {
+                    extend: 'excelHtml5',
+                    exportOptions: {
+                        columns: [ 1, 2, 3, 4, 5, 6, 7 ]
+                    }
+                }, {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'LEGAL',
+                    download: 'open',
+                    customize: function (doc) {
+                            doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
+                            doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
+                            doc.content[1].table.widths = [ '3%', '20%',  '20%', '20%', '7%', '10%', '10%', '10%'];
+                        },
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7 ]
+                    }
+                },
+                ],
+            aoColumnDefs: [{
+            'bSortable': false,
+            'aTargets': ['nosort'],
+            'orderable': false,
+            'targets': [0, 8],
+            }],
+            order: [[1, 'asc']],
+            });
+            t.on('order.dt search.dt', function () {
+            let i = 1;
+    
+            t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+                this.data(i++);
+                });}).draw();
+        </script>
+        <script src="{% static '/Javascript/js/functions.js' %}"></script>
+</body>
+{% endblock %}

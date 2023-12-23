@@ -1,0 +1,45 @@
+{% extends 'activities/Admin - Delete Confirmation.html' %}
+{% load static %}
+            {% block content %}
+            <br>
+            <h2 class="modal-title fa fa-user-edit" style="color: white;" id="exampleModalLabel">Edit Information</h2>
+            <hr id="whitehr">
+            <div class="card" style="padding: 3%; border-radius: 5px;">
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="md-form">
+                            <label id="user-lbl" data-error="wrong" style="color: black;" data-success="right">Exam Score: </label> {{form.score}}
+                        </div>
+                        <div class="md-form">
+                            <label id="user-lbl" data-error="wrong" style="color: black;" data-success="right">Applicant Status: </label> {{form.main_status}}
+                        </div>
+                        <hr>
+                        <div class="form-check">
+                            {{form.card}}
+                            <label id="user-lbl" data-error="wrong" style="color: black;" data-success="right" for="Card"> Card</label>
+                        </div>
+                        <div class="form-check">
+                            {{form.barangay_clearance}}
+                            <label id="user-lbl" data-error="wrong" style="color: black;" data-success="right" for="barangay_clearance"> Barangay Clearance</label>
+                        </div>
+                        <div class="form-check">
+                            {{form.good_moral}}
+                            <label id="user-lbl" data-error="wrong" style="color: black;" data-success="right" for="good_moral"> Good Moral Certificate</label>
+                        </div>
+                        <div class="form-check">
+                            {{form.psa_birthcert}}
+                            <label id="user-lbl" data-error="wrong" style="color: black;" data-success="right" for="psa_birthcert"> Philippine Statistics Authority (Birth Certificate)</label>
+                        </div>
+                        <div class="mt-4 text-end">
+                            <a href="{% url 'tupadmin_applicantreqs' %}"><button type="button" style="background-color: #3a3939; color: white;" class="btn">Back</button></a>
+                            <button type="submit" style="background-color: #EF3A25; color: white;" class="btn">Save changes</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

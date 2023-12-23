@@ -1,0 +1,25 @@
+{% extends 'activities/Admin - Delete Confirmation.html' %}
+{% load static %}
+            {% block content %}
+            <!-- Spacing --> <br><br><br>
+            <h4 class="d-flex justify-content-center"><i class="fas fa-clipboard-check"></i>Confirmation Message</h4>
+            <hr style="background-color: white;">
+            <form action="{% url 'tupadmin_deleteexam' exam.id %}" method="POST">
+                {% csrf_token %}
+                <h5 class="modal-title" style="text-align:center;" id="modalLabel">Are you sure you want to delete <strong>{{ exam.examiner }}</strong>'s schedule?</h5><br>
+                <div class="d-flex justify-content-center">
+                    <h5 style="margin-right:15px;"><i class="fa fa-calendar-alt"></i>{{ exam.exam_date }}</h5>
+                    <span style="margin-right:15px;">|</span>
+                    <h5 style="margin-right:15px;"><i class="fa fa-clock"></i>{{ exam.exam_time }}</h5>
+                    <span style="margin-right:15px;font-size:15px;">|</span>
+                    <h5><i class="fa fa-door-closed"></i>Room {{ exam.room }}</h5>
+                </div>
+                <br>
+                <div class="d-flex justify-content-center">
+                    <input class="btn btn-primary px-3" type="submit" name="Confirm" value="Confirm" style="margin-right: 2%;">
+                    <a href="{% url 'tupadmin_examschedule' %}"><button type="button" style="background-color: #EF3A25; color: white;" class="btn">Cancel</button></a>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endblock %}

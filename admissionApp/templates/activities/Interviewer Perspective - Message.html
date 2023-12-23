@@ -1,0 +1,100 @@
+{% extends 'activities/Admission Perspective - Message.html' %}
+{% load static %}
+    {% block header %}
+	<body>
+        <header class="fixed-top">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div id="main">
+                    <span style="font-size:30px;cursor:pointer;position:fixed;top:5px;" id="navButton" onclick="openOffcanvas()">&#9776;</span>
+                </div>
+                <div class="container">
+                    <a href="#" style="margin-left:40px;"><img src="{% static '/Media/logo.png' %}" width="37.5" height="37.5" alt="tup_logo"></a>
+                    <a class="hide-nav navbar-brand" href="#" style="position:fixed;margin-left:90px;"> Technological University of the Philippines - Cavite</a>
+                    <div class="dropdown-container" style="position: relative;">
+                        <button class="btn dropdown-toggle" type="button" id="Hdropdown" data-bs-toggle="dropdown"><i class="fa fa-fw fa-user"></i>Interviewer</button>
+                        <ul class="dropdown-menu" id="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+                        </ul>
+                    </div>
+                    </button>
+                </div>
+            </nav>
+        </header>
+        <!-- Side Nav-->
+
+    <div id="mySidenav" class="sidenav bg-light">
+        <ul class="list-unstyled ps-0">
+            <div class="buttons">
+                <a id="home" href="{% url 'interviewer_home' %}"><i class="fa fa-fw fa-home"></i>Home</a>
+                <a href="{% url 'interviewer_result' %}"><i class="fas fa-list-alt"></i>View Results</a>
+                <a href="{% url 'interviewer_compose' %}"><i class="fas fa-envelope"></i>Message</a>
+            </div>
+            <br>
+        </ul>
+    </div>
+    <div id="myCanvasNav" class="overlay3" onclick="closeOffcanvas()"></div>
+    {% endblock %}
+   <!-- DASHBOARD -->
+   {% if user.is_authenticated %}
+   <input type="hidden" id="logged-in-user" value="{{ user.id }}">
+{% endif %}
+<div id="grid" class="container-fluid h-100">
+   <div class="row justify-content-center h-100">
+       <div class="col-md-4 col-xl-3 chat h-100 mt-4">
+           {% block chatlist %}
+           <div class="card mb-sm-3 mb-md-0 contacts_card">
+               <div class="card-header">
+                   <div class="text-center">
+                       <button style="margin: 10px; color:rgb(236, 236, 236);" type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#addchat"><span class="fa fa-user-plus" style = "margin-right: 8px;"></span> Add People </button>
+                   </div>
+                   <div class="modal fade text-black" id="addchat" aria-labelledby="addchatlabel">
+                       <div class="modal-dialog modal-dialog-centered modal-lg">
+                           <div class="modal-content">
+                               <div class="modal-header text-center">
+                                   <h5 class="modal-title fa fa-user-plus" id="addchatlabel"> Add People to Message</h5>
+                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                               </div>
+                               <div class="modal-body mx-4">
+                                   <form method="POST" onsubmit="get_cred($('#type').val());">
+                                       {% csrf_token %}
+
+                                       {{ form.second_person }}
+                                       
+                                       <div class="modal-footer">
+                                           <button type="submit" class="btn btn-primary" style="background-color: #EF3A25;">Add</button>
+                                       </div>
+                                   </form>
+                               </div>
+                               
+                           </div>
+                       </div>
+                   </div>
+                   <div class="input-group">
+                       <input type="text" placeholder="Search..." name="" class="form-control search">
+                       <div class="input-group-prepend">
+                           <span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
+                       </div>
+                   </div>
+               </div>
+               <div class="card-body contacts_body">
+                   <ui class="contacts">
+                       {% for thread in Threads %}
+                           <li class="{% if forloop.first %}active{% endif %} contact-li" chat-id="chat_{{ thread.id }}" style="cursor: pointer;">
+                               <div class="d-flex bd-highlight">
+                                   <div class="img_cont">
+                                       <img src="{% static '/Media/Usericon.png' %}" class="rounded-circle user_img">
+                                       <span class="online_icon"></span>
+                                   </div>
+                                   <div class="user_info">
+                                       {% if thread.first_person == user %}
+                                           <span>{{ thread.second_person.username }}</span>
+                                       {% else %}
+                                           <span>{{ thread.first_person.username }}</span>
+                                       {% endif %}
+                                   </div>
+                               </div>
+                           </li>
+                       {% endfor %}
+                   </ui>
+               </div>
+           {% endblock %}

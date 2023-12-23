@@ -1,0 +1,481 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition-duration: 500ms;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+    overflow-x: hidden;
+}
+
+input {
+    border-radius: 5px !important;
+}
+
+.overlay3 {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+
+/*Nav Bar*/
+
+.navbar {
+    transition: 0.5s ease-in-out;
+    position: relative;
+    width: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 5;
+}
+
+.fixed-top .navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: auto;
+    transition: 0.5s ease-in-out;
+}
+
+.fixed-top .nav-bar .main:hover {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#login_btn {
+    color: #EF3A25;
+    font-size: medium;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+#login_btn:hover {
+    text-shadow: 0 0 10px rgba(128, 128, 128, 0.5);
+    color: rgba(239, 58, 37, 0.9);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+#joinus_btn {
+    background-color: #EF3A25;
+    color: white;
+    border: none;
+    font-size: medium;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+#joinus_btn:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: rgba(239, 58, 37, 0.9);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+#card_container {
+    padding: 3%;
+}
+
+hr {
+    background-color: red;
+}
+
+#about {
+    padding: 0% 0% 3% 0%;
+}
+
+
+/*-----------------------------------------------------------Side nav-----------------------------------------------*/
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    line-height: 40px;
+    position: absolute;
+    z-index: 1;
+    top: 64px;
+    left: 0;
+    background-color: none;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    display: ruby;
+}
+
+#sidenavheader {
+    text-align: center;
+    line-height: 30px;
+    padding: 5%;
+    margin-bottom: 10px;
+    background-color: #D7CFCC;
+    color: black;
+    z-index: 4;
+}
+
+.sidenav .buttons a,
+#sidenavdropdown {
+    padding: 8px 8px 8px 32px;
+    margin-bottom: 2px;
+    text-align: left;
+    font-size: 1rem;
+    text-decoration: none;
+    color: black;
+    display: block;
+    box-sizing: border-box;
+    background-color: #D7CFCC;
+    border-top: 1px solid rgba(255, 255, 255, .18);
+    border-radius: 8px;
+}
+
+#sidenavdropdown {
+    border-top: 1px solid rgba(255, 255, 255, .18);
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    display: block;
+    width: 100%;
+}
+
+#sidenavdropdown i {
+    margin-right: 10px;
+}
+
+#arrowdown {
+    margin-left: 80px;
+    display: inline-block;
+    transition: transform 0.15s ease;
+}
+
+#arrowdown {
+    transform: rotate(-90deg);
+}
+
+#sidenavddcontent a {
+    font-size: 0.91rem;
+    padding-left: 60px;
+}
+
+#sidenavddcontent {
+    display: none;
+}
+
+.sidenav .buttons a i {
+    margin-right: 10px;
+}
+
+.sidenav .buttons a:hover,
+#sidenavdropdown:hover {
+    padding-left: 35px;
+    border-left: solid 6px;
+    border-left-color: #ef3a25;
+    color: #ef3a25;
+}
+
+.sidenav .sidenavclose .closebtn {
+    position: absolute;
+    top: 5px;
+    right: 25px;
+    font-size: 36px;
+    margin: auto;
+    text-decoration: none;
+    color: black;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding-left: 2%;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+h2 {
+    font-size: 25px;
+    font-weight: 500;
+    position: relative;
+}
+
+#Tablelabel {
+    color: black;
+}
+
+#whitehr {
+    background-color: white;
+}
+
+.container-fluid {
+    background-color: #707070;
+    margin: auto;
+    border-radius: 8px;
+    padding: 50px 40px;
+    transition: opacity 0.3s ease-in-out;
+    color: black;
+}
+
+.imgslide {
+    background-color: white;
+    margin: 0;
+    border-radius: 0;
+    padding: 0;
+}
+
+.container-grid {
+    background-color: #707070;
+    position: relative;
+    width: auto;
+    margin: auto;
+    border-radius: 8px;
+    color: white;
+}
+
+.container-grid form .admission-input {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+form .admission-input .input-box {
+    margin: 20px 0 12px 0;
+    width: calc(100% / 2 - 20px);
+}
+
+.admission-input .input-box [for=info] {
+    display: block;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 6px;
+}
+
+.admission-input .input-box input {
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 15px;
+    border-bottom-width: 2px;
+    transition: all 0.1s ease;
+}
+
+.admission-input .input-box select {
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 15px;
+    border-bottom-width: 2px;
+    transition: all 0.1s ease;
+}
+
+.admission-input .input-box input[type=submit] {
+    cursor: pointer;
+    color: white;
+    border-color: #AB1D0D;
+    background-color: #AB1D0D;
+}
+
+.admission-input .input-box input[type=submit]:hover {
+    border-color: #800000;
+    background-color: #800000;
+}
+
+.admission-input .input-box input:focus,
+.admission-input .input-box input:hover {
+    border-color: black;
+}
+
+.admission-input .input-box select:hover,
+.admission-input .input-box select:focus {
+    border-color: black;
+}
+
+
+/* HEADER DROPDOWN */
+
+#Hdropdown {
+    background-color: #EF3A25;
+    color: white;
+    border: none;
+    font-size: medium;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+#Hdropdown,
+i {
+    margin-right: 5px;
+}
+
+#Hdropdown:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: rgba(239, 58, 37, 0.9);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+#dropdown-menu li a {
+    margin-bottom: 3px;
+    text-align: left;
+    display: block;
+    box-sizing: border-box;
+    transition: 0.5s;
+}
+
+#dropdown-menu li:hover a {
+    padding-left: 18px;
+    background-color: #EF3A25;
+    color: #FFFF;
+    transition: 0.4s;
+}
+
+#dropdown-menu li:active a {
+    background-color: #EF3A25;
+}
+
+
+/*-------------------------------------------------- Applicant Perspective - HOME ---------------------------------------------*/
+
+.container-grid .content {
+    position: relative;
+    margin-top: 5vh;
+    min-height: 90vh;
+}
+
+
+/*Information Section*/
+
+#infocard {
+    padding: 5%;
+    background-color: white;
+    border-radius: 15px;
+    color: black;
+    font-size: 20px;
+    text-decoration: none;
+    line-height: 4ch;
+    min-width: auto;
+    margin-bottom: 40px;
+}
+
+#infocard:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.425);
+}
+
+#aphtitle {
+    letter-spacing: normal;
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.904);
+}
+
+#whitehr {
+    background-color: white;
+}
+
+
+/* Dashboard Cards */
+
+#dbcards {
+    padding: 4%;
+}
+
+#aphrow {
+    color: rgb(0, 0, 0);
+}
+
+#aphrow .card {
+    background-color: white;
+    border-radius: 15px;
+    margin: 4px;
+    transition: 0.4s;
+    min-width: auto;
+}
+
+#aphrow .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.425);
+}
+
+#aphrow .card hr {
+    background-color: #EF3A25;
+}
+
+
+/*-------------------------------------------------- Applicant Perspective - View Results ---------------------------------------------*/
+
+
+/*image to download pdf */
+
+#vrtitle {
+    margin-bottom: 30px;
+}
+
+#dlsection {
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+#dlsection a i {
+    text-decoration: none;
+    color: white;
+    margin-right: 50px;
+}
+
+#dlsection a i:hover {
+    color: #ab1d0d;
+}
+
+
+/*-------------------------------------------------- Applicant Perspective - Print PDF ---------------------------------------------*/
+
+
+/*print interview slip */
+
+#interviewslip {
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+#interviewslip a i {
+    text-decoration: none;
+    color: black;
+    margin-right: 50px;
+}
+
+#interviewslip a i:hover {
+    color: #ab1d0d;
+}
+
+#academics,
+#admission,
+#about {
+    margin-bottom: 3%;
+}
+
+#academics div hr,
+#admission div hr,
+#about div hr {
+    margin-bottom: 3%;
+}

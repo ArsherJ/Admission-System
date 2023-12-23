@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static '/Media/logo.svg' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static '/CSS/font-awesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static '/CSS/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/CSS/Admission Perspective - Home.css' %}">
+    <link rel="stylesheet" href="{% static '/CSS/DataTables/datatables.css' %}">
+    <script src="{% static '/Javascript/js/jquery.min.js' %}"></script>
+    <script src="{% static '/Javascript/datatables.js' %}"></script>
+    <title>Technological University of the Philippines - Cavite</title>
+</head>
+
+
+<body>
+    <header class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a href="#" style="margin-left:40px;"><img src="{% static '/Media/logo.png' %}" width="37.5" height="37.5" alt="tup_logo"></a>
+                <a class="hide-nav navbar-brand" href="#" style="position:fixed;margin-left:90px;"> Technological University of the Philippines - Cavite</a>
+        </nav>
+    </header>
+    <!-- DASHBOARD -->
+    <div id="grid" class="container-fluid">
+        <div class="container-grid" style="padding: 5%;">
+            {% block content %}
+            <!-- Spacing --> <br><br><br><br>
+            <h4 class="d-flex fas fa-clipboard-check justify-content-center"> Confirmation Message</h4>
+            <hr style="background-color: white;">
+            <form action="{% url 'tupadmin_deletereqs' applicant.id %}" method="POST">
+                {% csrf_token %}
+                <h5 class="modal-title" style="text-align:center;" id="modalLabel">Are you sure you want to delete <strong>{{applicant.user_appli.user.first_name}} {{applicant.user_appli.user.last_name}}</strong>?</h5><br>
+
+                <div class="d-flex justify-content-center">
+                    <input class="btn btn-primary px-3" type="submit" name="Confirm" value="Confirm" style="margin-right: 2%;">
+                    <a href="{% url 'tupadmin_applicantreqs' %}"><button type="button" style="background-color: #EF3A25; color: white;" class="btn">Cancel</button></a>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endblock %}
+
+
+    <!-- Footer  -->
+    <footer id="footer" class="py-4 bg-light mt-auto">
+        <div class="px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy;
+                    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+                </div>
+                <div>
+                    <i class="fa fa-phone-square"></i>
+                    <a>Privacy Policy</a> &middot;
+                    <a>Terms &amp; Conditions</a> &middot;
+                    <a>Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</html>

@@ -1,0 +1,184 @@
+{% extends 'activities/Admission Perspective - Home.html' %}
+{% load static %}
+
+            {% block content %}
+            <!-- spacing --><br><br>
+            <div style="color:white;">
+                <h4 style="text-align:right;">Welcome Admin!</h4>
+                <h1 class="mt-4"><i class="fas fa-table me-1"></i>Applicant Requirements</h1>
+                <hr id="whitehr">
+                <h6>The Table below shows the requirements of applicants</h6>
+            </div>
+        </div>
+        <div class="container-grid">
+            <div class="card">
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="container text-black">
+                            <div class="row">
+                                <div class="col">
+
+                                    <div class="table-responsive">
+                                        <table class="table table-sm" id="table_applicants">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">No.</th>
+                                                    <th scope="col">Name of Applicant </th>
+                                                    <th scope="col">Sex</th>
+                                                    <th scope="col">Score</th>
+                                                    <th scope="col">Strand</th>
+
+                                                    <th scope="col">Card</th>
+                                                    <th scope="col">BC</th>
+                                                    <th scope="col">GMC</th>
+                                                    <th scope="col">PSA</th>
+                                                    <th scope="col">Interview</th>
+                                                    <th scope="col">Medical</th>
+                                                    <th scope="col">Status</th>
+                                                    <th scope="col" class="nosort text-center">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for applicant in applicants %}
+                                                <tr>
+                                                    <td></td>
+                                                    <td>{{ applicant.user_appli.user.first_name }} {{ applicant.user_appli.user.last_name }}</td>
+                                                    <td>{{ applicant.user_appli.appli_sex }}</td>
+                                                    <td>{{ applicant.score }}</td>
+                                                    <td>{{ applicant.user_appli.appli_strand }}</td>
+
+                                                    {% if applicant.card is True %}
+                                                        <td style="color: green;">Passed</td>
+                                                    {% else %}
+                                                        <td style="color: orange;">On Going</td>
+                                                    {% endif %} {% if applicant.barangay_clearance is True %}
+                                                        <td style="color: green;">Passed</td>
+                                                    {% else %}
+                                                        <td style="color: orange;">On Going</td>
+                                                    {% endif %} 
+                                                    
+                                                    {% if applicant.good_moral is True %}
+                                                        <td style="color: green;">Passed</td>
+                                                    {% else %}
+                                                        <td style="color: orange;">On Going</td>
+                                                    {% endif %} 
+                                                    
+                                                    {% if applicant.psa_birthcert is True %}
+                                                        <td style="color: green;">Passed</td>
+                                                    {% else %}
+                                                        <td style="color: orange;">On Going</td>
+                                                    {% endif %}
+
+                                                    <!-- INTERVIEWER STATUS -->
+                                                    {% if applicant.inter_status == 'Passed' %}
+                                                        <td style="color: green;">{{ applicant.inter_status }}</td>
+                                                    {% elif applicant.inter_status == 'On Going' %}
+                                                        <td style="color: orange;">{{ applicant.inter_status }}</td>
+                                                    {% elif applicant.inter_status == 'Pending' %}
+                                                        <td style="color: grey;">{{ applicant.inter_status }}</td>
+                                                    {% else %}
+                                                        <td style="color: red;">{{ applicant.inter_status }}</td>
+                                                    {% endif %}
+                                                    
+                                                    <!-- MEDICAL STATUS -->
+
+                                                    {% if applicant.medical_status == 'Passed' %}
+                                                        <td style="color: green;">{{ applicant.medical_status }}</td>
+                                                    {% elif applicant.medical_status == 'On Going' %}
+                                                        <td style="color: orange;">{{ applicant.medical_status }}</td>
+                                                    {% elif applicant.medical_status == 'Pending' %}
+                                                        <td style="color: grey;">{{ applicant.medical_status }}</td>
+                                                    {% else %}
+                                                        <td style="color: red;">{{ applicant.medical_status }}</td>
+                                                    {% endif %}
+
+                                                    
+
+                                                    <!-- Applicant STATUS -->
+                                                    {% if applicant.main_status == 'Passed' %}
+                                                        <td style="color: green;">{{ applicant.main_status }}</td>
+                                                    {% elif applicant.main_status == 'On Going' %}
+                                                        <td style="color: orange;">{{ applicant.main_status }}</td>
+                                                    {% elif applicant.main_status == 'Pending' %}
+                                                        <td style="color: grey;">{{ applicant.main_status }}</td>
+                                                    {% else %}
+                                                        <td style="color: red;">{{ applicant.main_status }}</td>
+                                                    {% endif %}
+                                                    <!-- <td>{{ applicant.barangay_clearance }}</td> -->
+                                                    <!-- <td>{{ applicant.good_moral }}</td> -->
+                                                    <!-- <td>{{ applicant.psa_birthcert }}</td> -->
+                                                    <td style="text-align: center;">
+                                                        <div>
+                                                            <a href="{% url 'tupadmin_editreqs' applicant.id %}"><button type="button" style="background-color: #EF3A25; color: white;" class="btn">Update</button></a>
+                                                            <a href="{% url 'tupadmin_deletereqs' applicant.id %}"><button type="button" style="background-color: #EF3A25; color: white;" class="btn">Delete</button></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+    </div>
+
+    <script src="{% static '/Javascript/js/bootstrap.bundle.min.js' %}"></script>
+    <script>
+        var t = $('#table_applicants').DataTable({
+            dom: 'Blfrtip',
+            searching: true,
+            info: 'true',
+            buttons: [
+                {
+                    extend: 'copyHtml5',
+                    pageSize: 'LEGAL',
+                    exportOptions: {
+                        columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
+                    }
+                },{
+                    extend: 'excelHtml5',
+                    exportOptions: {
+                        columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
+                    }
+                },{
+                    extend: 'pdfHtml5',
+                    download: 'open',
+                    orientation: 'landscape',
+                    pageSize: 'LEGAL',
+                    customize: function (doc) {
+                            
+                           doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
+                           doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
+                           doc.content[1].table.widths = [ '3%', '15%',  '8%', '8%', '8%', '8%', '8%', '8%', '8%', '8%', '8%', '8%'];
+                       },
+                    exportOptions: {
+                        columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
+                    }
+                }
+            ],
+            aoColumnDefs: [{
+                'bSortable': false,
+                'aTargets': ['nosort'],
+                'orderable': false,
+                'targets': [0, 12],
+            }],
+            order: [[1, 'asc']],
+            });
+            t.on('order.dt search.dt', function () {
+            let i = 1;
+            t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+                this.data(i++);
+            });}).draw();
+    </script>
+    <script src="{% static '/Javascript/js/functions.js' %}"></script>
+</body>
+{% endblock %}
+

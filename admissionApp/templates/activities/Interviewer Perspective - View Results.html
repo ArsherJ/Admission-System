@@ -1,0 +1,132 @@
+{% extends 'activities/Interviewer Perspective - Home.html' %}
+{% load static %}
+            {%block content%}
+                <h1 class="mt-4" style="color:white;"><i class="fas fa-table me-1"style="color:white;"></i>Interview Results</h1>
+                <hr id="whitehr">
+                <h6 style="color:white;">The Table below shows the Interview results of applicants</h6>
+                <div class="card" style="color:black;">
+                    <div class="card px-4 py-4 card-body">
+                        <form action="">
+                            <div class="container">
+                                <div class="table-responsive">
+                                    <table class="table table-sm" id="table_nurse">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>Name of Applicant</th>
+                                                <th>Sex</th>
+                                                <th>Course</th>
+                                                <th>Shift</th>
+                                                <th>Interview Status</th>
+                                                <th scope="col" class="nosort">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- READ -->
+                                            {% for applicant in applicants %}
+                                            <tr>
+                                                <td></td>
+                                                <td>{{ applicant.user_appli.user.first_name }} {{ applicant.user_appli.user.last_name }}</td>
+                                                <td>{{ applicant.user_appli.appli_sex }}</td>
+                                                <td>{{ applicant.user_appli.appli_course }}</td>
+
+                                                {% if applicant.user_appli.appli_strand == 'STEM' %}
+                                                    <td>AM</td>
+                                                {% else %}
+                                                    <td>PM</td>
+                                                {% endif %}
+
+                                                {% if applicant.inter_status == 'Passed' %}
+                                                    <td style="color: green;">{{ applicant.inter_status }}</td>
+                                                {% elif applicant.inter_status == 'On Going' %}
+                                                    <td style="color: orange;">{{ applicant.inter_status }}</td>
+                                                {% elif applicant.inter_status == 'Pending' %}
+                                                    <td style="color: grey;">{{ applicant.inter_status }}</td>
+                                                {% else %}
+                                                    <td style="color: red;">{{ applicant.inter_status }}</td>
+                                                {% endif %}
+
+                                                <td><a href="{% url 'interviewer_editreqs' applicant.id %}"><button type="button" style="background-color: #EF3A25; color: white;" class="btn">UPDATE</button></a></td>
+                                            </tr>
+                                            {% endfor %}
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <br><br>
+    </div>
+
+    <script src="{% static '/Javascript/js/bootstrap.bundle.min.js' %}"></script>
+    <script>
+        var t = $('#table_nurse').DataTable({
+            dom: 'Blfrtip',
+            info: 'true',
+            buttons: [
+                {
+                    extend: 'copyHtml5',
+                    pageSize: 'LEGAL',
+                    exportOptions: {
+                        columns: [ 1, 2, 3, 4, 5]
+                    }
+                },{
+                    extend: 'excelHtml5',
+                    pageSize: 'LEGAL',
+                    exportOptions: {
+                        columns: [ 1, 2, 3, 4, 5]
+                    }
+                },{
+                    extend: 'pdfHtml5',
+                    download: 'open',
+                    pageSize: 'LEGAL',
+                    customize: function (doc) {
+                           doc.defaultStyle.fontSize = 12; //2, 3, 4,etc
+                           doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
+                           doc.content[1].table.widths = [ '5%', '30%',  '15%', '20%', '15%', '20%'];
+                       },
+                    exportOptions: {
+                        columns: [ 0, 1, 2, 3, 4, 5]
+                    }
+                }
+            ],
+            aoColumnDefs: [{
+                'bSortable': false,
+                'aTargets': ['nosort'],
+                'orderable': false,
+                'targets': [0, 6],
+            }],
+            order: [[1, 'asc']],
+            });
+            t.on('order.dt search.dt', function () {
+            let i = 1;
+            t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+                this.data(i++);
+            });}).draw();
+    </script>
+    <script src="{% static '/Javascript/js/functions.js' %}"></script>
+</body>
+{% endblock %}
+<!-- Footer  -->
+<footer id="footer" class="py-4 bg-light mt-auto">
+    <div class="px-4">
+        <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Copyright &copy;
+                <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+            </div>
+            <div>
+                <i class="fa fa-phone-square"></i>
+                <a>Privacy Policy</a> &middot;
+                <a>Terms &amp; Conditions</a> &middot;
+                <a>Contact Us</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

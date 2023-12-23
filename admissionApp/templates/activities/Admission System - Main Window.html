@@ -1,0 +1,568 @@
+<!doctype html> {% load static %}
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/CSS/Admission Perspective - Home.css' %}">
+    <link rel="icon" href="{% static '/Media/logo.svg' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static '/CSS/Admission Perspective - Home.css' %}">
+
+
+    <title>Technological University of the Philippines - Cavite</title>
+</head>
+
+<body>
+    <header class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <img src="{% static '/Media/logo.png' %}" width="37.5" height="37.5" alt="tup_logo">
+                <a class="hide-nav navbar-brand" href="{% url 'loginPage' %}"> Technological University of the Philippines - Cavite</a>
+
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#academics">Academics</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#admission">Admission</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#about">About</a>
+                        </li>
+                    </ul>
+
+                    <a id="login_btn" class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#signinPage">Log in</a>
+
+                    <form action="/registration">
+                        <button id="joinus_btn" class="btn btn-outline-success" type="submit" data-bs-toggle="modal" data-bs-target="#signupPage">Join Us</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Modal Sign in -->
+    <div class="modal fade" id="signinPage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h5 class="modal-title" id="exampleModalLabel">Sign In</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="modal-body mx-4">
+
+                        <div class="md-form">
+                            <label id="user-lbl" data-error="wrong" data-success="right">User ID:</label>
+                            <input autofocus name="userid" id="email" type="text" class="form-control validate">
+                        </div>
+
+                        <div class="md-form">
+                            <label data-error="wrong" data-success="right">Password</label>
+                            <input name="password" id="password" type="password" class="form-control validate">
+                        </div>
+                        <br>
+                        <div class="text-center mb-3">
+                            <a style="color: white; text-decoration: none;"><button type="submit" style="background-color: #EF3A25; color: white;" class="btn btn-block z-depth-1a">Sign in</button></a>
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static '/Media/img_1.jpg' %}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>First slide label</h5>
+                        <p>Some representative placeholder content for the first slide.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static '/Media/img_2.jpg' %}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Second slide label</h5>
+                        <p>Some representative placeholder content for the second slide.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static '/Media/img_3.jpg' %}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Third slide label</h5>
+                        <p>Some representative placeholder content for the third slide.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+    </div>
+    </div>
+
+    <div id="card_container" class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Certified Teacher</h5>
+                        <hr>
+                        <p class="card-text">The gradual accumulation of information about atomic and small-scale behaviour...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">2,769 Courses</h5>
+                        <hr>
+                        <p class="card-text">The gradual accumulation of information about atomic and small-scale behaviour...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Certified Teacher</h5>
+                        <hr>
+                        <p class="card-text">The gradual accumulation of information about atomic and small-scale behaviour...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ======= Academics Section ======= -->
+    <section id="academics" class="academics">
+        <div class="container">
+            <h2 class="text-center fw-bold">Academics</h2>
+            <hr>
+            <div style="margin-bottom: 3%;">
+                <h3 class="text-center">Department of Industrial Engineering</h3>
+                <hr style="width: 15%; margin: auto;">
+                <h4>History</h4>
+                <p>
+                    The College of Industrial Technology traces its roots from the Technical Department of the then Philippine School of Arts and Trades adapted in 1937 which later became the Philippine College of Arts and Trades...
+                </p>
+
+                <h4>Goals</h4>
+                <p>
+                    The College of Industrial Technology develop highly skilled technicians, technologist, and applied researchers who are needed to sustain industrial growth and develop for the enhancement of quality of life.
+                </p>
+
+                <h4>Obejctives</h4>
+                <ol>
+                    <li><i class="bi bi-check-circle"></i> Develop, improve and implement training program to attain effective delivery system of technological education.</li>
+                    <li><i class="bi bi-check-circle"></i> Strengthen faculty qualification and rank.</li>
+                    <li><i class="bi bi-check-circle"></i> Provide opportunities for faculty researches and come up with new concepts, materials and processes.</li>
+                    <li><i class="bi bi-check-circle"></i> Make available the facilities of the College and expertise of the faculty to the community.</li>
+                </ol>
+            </div>
+
+            <div style="margin-bottom: 3%;">
+                <h3 class="text-center">Department of Industrial Education</h3>
+                <hr style="width: 15%; margin: auto;">
+                <h4>History</h4>
+                <p>
+                    The College of Industrial Technology traces its roots from the Technical Department of the then Philippine School of Arts and Trades adapted in 1937 which later became the Philippine College of Arts and Trades...
+                </p>
+
+                <h4>Goals</h4>
+                <p>
+                    The College of Industrial Technology develop highly skilled technicians, technologist, and applied researchers who are needed to sustain industrial growth and develop for the enhancement of quality of life.
+                </p>
+
+                <h4>Obejctives</h4>
+                <ol>
+                    <li><i class="bi bi-check-circle"></i> Develop, improve and implement training program to attain effective delivery system of technological education.</li>
+                    <li><i class="bi bi-check-circle"></i> Strengthen faculty qualification and rank.</li>
+                    <li><i class="bi bi-check-circle"></i> Provide opportunities for faculty researches and come up with new concepts, materials and processes.</li>
+                    <li><i class="bi bi-check-circle"></i> Make available the facilities of the College and expertise of the faculty to the community.</li>
+                </ol>
+            </div>
+
+            <div style="margin-bottom: 3%;">
+                <h3 class="text-center">Department of Engineering</h3>
+                <hr style="width: 15%; margin: auto;">
+                <h4>History</h4>
+                <p>
+                    The College of Industrial Technology traces its roots from the Technical Department of the then Philippine School of Arts and Trades adapted in 1937 which later became the Philippine College of Arts and Trades...
+                </p>
+
+                <h4>Goals</h4>
+                <p>
+                    The College of Industrial Technology develop highly skilled technicians, technologist, and applied researchers who are needed to sustain industrial growth and develop for the enhancement of quality of life.
+                </p>
+
+                <h4>Obejctives</h4>
+                <ol>
+                    <li><i class="bi bi-check-circle"></i> Develop, improve and implement training program to attain effective delivery system of technological education.</li>
+                    <li><i class="bi bi-check-circle"></i> Strengthen faculty qualification and rank.</li>
+                    <li><i class="bi bi-check-circle"></i> Provide opportunities for faculty researches and come up with new concepts, materials and processes.</li>
+                    <li><i class="bi bi-check-circle"></i> Make available the facilities of the College and expertise of the faculty to the community.</li>
+                </ol>
+            </div>
+
+            <div style="margin-bottom: 3%;">
+                <h3 class="text-center">Math and Science Department</h3>
+                <hr style="width: 15%; margin: auto;">
+                <h4>History</h4>
+                <p>
+                    The College of Industrial Technology traces its roots from the Technical Department of the then Philippine School of Arts and Trades adapted in 1937 which later became the Philippine College of Arts and Trades...
+                </p>
+
+                <h4>Goals</h4>
+                <p>
+                    The College of Industrial Technology develop highly skilled technicians, technologist, and applied researchers who are needed to sustain industrial growth and develop for the enhancement of quality of life.
+                </p>
+
+                <h4>Obejctives</h4>
+                <ol>
+                    <li><i class="bi bi-check-circle"></i> Develop, improve and implement training program to attain effective delivery system of technological education.</li>
+                    <li><i class="bi bi-check-circle"></i> Strengthen faculty qualification and rank.</li>
+                    <li><i class="bi bi-check-circle"></i> Provide opportunities for faculty researches and come up with new concepts, materials and processes.</li>
+                    <li><i class="bi bi-check-circle"></i> Make available the facilities of the College and expertise of the faculty to the community.</li>
+                </ol>
+            </div>
+
+            <div style="margin-bottom: 3%;">
+                <h3 class="text-center">Liberal Arts Department</h3>
+                <hr style="width: 15%; margin: auto;">
+                <h4>History</h4>
+                <p>
+                    The College of Industrial Technology traces its roots from the Technical Department of the then Philippine School of Arts and Trades adapted in 1937 which later became the Philippine College of Arts and Trades...
+                </p>
+
+                <h4>Goals</h4>
+                <p>
+                    The College of Industrial Technology develop highly skilled technicians, technologist, and applied researchers who are needed to sustain industrial growth and develop for the enhancement of quality of life.
+                </p>
+
+                <h4>Obejctives</h4>
+                <ol>
+                    <li><i class="bi bi-check-circle"></i> Develop, improve and implement training program to attain effective delivery system of technological education.</li>
+                    <li><i class="bi bi-check-circle"></i> Strengthen faculty qualification and rank.</li>
+                    <li><i class="bi bi-check-circle"></i> Provide opportunities for faculty researches and come up with new concepts, materials and processes.</li>
+                    <li><i class="bi bi-check-circle"></i> Make available the facilities of the College and expertise of the faculty to the community.</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======= Admission Section ======= -->
+    <section id="admission" class="admission">
+        <div class="container">
+            <h2 class="text-center fw-bold">Admission</h2>
+            <hr>
+            <div style="margin-bottom: 3%;">
+                <h4 class="fw-bold">ADMISSIONS AT TUP</h4>
+
+                <p style="margin-bottom: 2%; text-align: justify;">
+                    The Office of Admissions assists students to obtain a realistic picture of their abilities, aptitudes, interests, personality characteristics and school achievements. The objectives are as follows: (1) to enable the student's realize the full extent of
+                    their educational potentials; (2) to identify student's strengths and weaknesses; and (3) to know the implication of these, thus, help the counselor have a better picture of the students. <br> Other Announcements
+                    <br> The Admissions Office has already started accepting freshmen applicants for School Year 2019-2020. Interested applicants may download the TUP Application Form for College Admission Test available in this web site and accomplish
+                    this and present together with the requirements to the Admissions Office from Monday to Friday, 8:00am to 5:00pm. The admission test is given every third Sunday of the month and the result is released three weeks after.
+                </p>
+            </div>
+
+            <div style="margin-bottom: 3%;">
+                <h4 class="fw-bold">ADMISSION PROCEDURES</h4>
+                <ol>
+                    <li><i class="bi bi-check-circle"></i> Applicants must apply online at www.tup.edu.ph</li>
+                    <li><i class="bi bi-check-circle"></i> Click <strong>Admissions</strong> and select ONLINE APPLICATION.</li>
+                    <li><i class="bi bi-check-circle"></i> Once directed to APPLICANTS ACCESS MODULE, click <strong>Apply</strong>.</li>
+                    <li><i class="bi bi-check-circle"></i> Fill out Profile Verification, choose <strong>Cavite Campus</strong> and click CONTINUE.</li>
+                    <li><i class="bi bi-check-circle"></i> Provide necessary information from Step 1 to Step 4 then click <strong>Submit</strong>.</li>
+                    <li><i class="bi bi-check-circle"></i> Proceed to TUPC - Admissions Office for evaluation and submission of <strong>Application Requirements</strong>:</li>
+                    <ul>
+                        <li><i class="bi bi-check-circle"></i> Hard copy of accomplished application form;</li>
+                        <li><i class="bi bi-check-circle"></i> Two (2) recent 2"x2" pictures on plain white background;</li>
+                        <li><i class="bi bi-check-circle"></i> For Freshmen, photocopy of Grade 12 Senior High School card;</li>
+                        <li><i class="bi bi-check-circle"></i> For Transferee, photocopy of Transcript of Records (TOR); and,</li>
+                        <li><i class="bi bi-check-circle"></i> There should be NO FAILING GRADES reflected either in the card or TOR.</li>
+                    </ul>
+                    <li><i class="bi bi-check-circle"></i> Pay appropriate fees at the Cashier's Office.</li>
+                    <li><i class="bi bi-check-circle"></i> Return to TUPC - Admissions Office for test permit issuance.</li>
+                </ol>
+            </div>
+
+            <div style="margin-bottom: 3%;">
+                <h4 class="fw-bold">ENROLLMENT REQUIREMENTS</h4>
+                <ol>
+                    <li><i class="bi bi-check-circle"></i> Scores of the applicant met the required cut-off scores set for the program choice</li>
+                    <li><i class="bi bi-check-circle"></i> Applicant is qualified for interview as an additional requirement for the program of choice.</li>
+                    <li><i class="bi bi-check-circle"></i> Results of the Medical Examination showed that the applicant is physically fit.</li>
+                    <li><i class="bi bi-check-circle"></i> Submission of the original copies of the following:</li>
+                    <ul>
+                        <li><i class="bi bi-check-circle"></i> For Freshmen, FORM 138(High School Card)</li>
+                        <li><i class="bi bi-check-circle"></i> For Transferees, Transcript of Records and Honorable Dismissal</li>
+                        <li><i class="bi bi-check-circle"></i> Barangay Clearance</li>
+                        <li><i class="bi bi-check-circle"></i> Certificate of Good Moral Character</li>
+                    </ul>
+                    <li><i class="bi bi-check-circle"></i> Submission of photocopy of PSA/NSO Birth Certificate</li>
+                </ol>
+            </div>
+
+            <div>
+                <h4 class="fw-bold">UNDERGRADUATE PROGRAMS</h4>
+                <h6>COLLEGE OF ENGINEERING (COE)</h6>
+
+                <ul>
+                    <li><i class="bi bi-check-circle"></i> Bachelor of Science in Civil Engineering</li>
+                    <li><i class="bi bi-check-circle"></i> Bachelor of Science in Electrical Engineering</li>
+                    <li><i class="bi bi-check-circle"></i> Bachelor of Science in Electronics Engineering</li>
+                    <li><i class="bi bi-check-circle"></i> Bachelor of Science in Mechanical Engineering</li>
+                </ul>
+
+                <h6>COLLEGE OF INDUSTRIAL TECHNOLOGY (CIT)</h6>
+
+                <ul>
+                    <li><i class="bi bi-check-circle"></i> Bachelor of Engineering Technology major in Mechanical Technology</li>
+                    <li><i class="bi bi-check-circle"></i> Bachelor of Engineering Technology major in Computer Engineering Technology</li>
+                    <li><i class="bi bi-check-circle"></i> Bachelor of Engineering Technology major in Civil Technology</li>
+                    <li><i class="bi bi-check-circle"></i> Bachelor of Engineering Technology major in Electrical Technology</li>
+                    <li><i class="bi bi-check-circle"></i> Bachelor of Engineering Technology major in Electronic Communications Technology</li>
+                    <li><i class="bi bi-check-circle"></i> Bachelor of Engineering Technology major in Electronics Technology</li>
+                </ul>
+            </div>
+
+
+
+        </div>
+    </section>
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="text-center">About</h2>
+            <hr>
+            <div class="row">
+                <div class="col-lg-6">
+                    <img src="{% static '/Media/img_1.jpg' %}" class="img-fluid" alt="">
+                </div>
+                <div class="col-lg-6 pt-4 pt-lg-0 content">
+                    <h3>Technological University of the Philippines - Cavite</h3>
+                    <p class="fst-italic">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </p>
+                    <ul>
+                        <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
+                        <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
+                        <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda</li>
+                    </ul>
+                    <p>
+                        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+        <div class="container">
+
+            <div class="section-title">
+                <h2 class="text-center">Contact</h2>
+                <hr>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-5 d-flex align-items-stretch">
+                    <div class="info">
+                        <div class="address">
+                            <i class="bi bi-geo-alt"></i>
+                            <h4>Location:</h4>
+                            <p>Carlos Trinidad Ave, Salawag, Dasmariñas, Cavite</p>
+                        </div>
+
+                        <div class="email">
+                            <i class="bi bi-envelope"></i>
+                            <h4>Email:</h4>
+                            <p>cavite@tup.edu.ph</p>
+                        </div>
+
+                        <div class="phone">
+                            <i class="bi bi-phone"></i>
+                            <h4>Website</h4>
+                            <a href="">http://www.tupcavite.edu.ph/</a>
+                        </div>
+
+                        <div class="phone">
+                            <i class="bi bi-phone"></i>
+                            <h4>Call:</h4>
+                            <p>(046) 416 4920</p>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="col-lg-5 d-flex align-items-stretch">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3865.4205109761797!2d120.96391321536771!3d14.345059087132443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d43fdf3bf3d3%3A0x756d61b3739581bc!2sTechnological%20University%20of%20the%20Philippines%20%E2%80%93%20Cavite!5e0!3m2!1sen!2sph!4v1638769952366!5m2!1sen!2sph"
+                        width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- End Contact Section -->
+
+    <!-- ======= Footer ======= -->
+    <footer class="text-center text-lg-start bg-light text-muted">
+        <!-- Section: Social media -->
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+            <!-- Left -->
+            <div class="me-5 d-none d-lg-block">
+                <span>Get connected with us on social networks:</span>
+            </div>
+            <!-- Left -->
+
+            <!-- Right -->
+            <div>
+                <a href="" class="me-4 text-reset">
+                    <img src="{% static '/Media/facebook-brands.svg' %}" width="20" height="20" alt="facebook">
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <img src="{% static '/Media/twitter-brands.svg' %}" width="20" height="20" alt="twitter">
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <img src="{% static '/Media/instagram-brands.svg' %}" width="20" height="20" alt="instagram">
+                </a>
+            </div>
+            <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+
+        <!-- Section: Links  -->
+        <section class="">
+            <div class="container text-center text-md-start">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-xl-3 mx-auto">
+                        <!-- Content -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Technological University of the Philippines - Cavite
+                        </h6>
+                        <p>
+                            Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-lg-2 mx-auto">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold">
+                            Useful links
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">Privacy Policy</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Terms and Conditions</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Contact Us</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">About</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <!-- Section: Links  -->
+
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2021 Copyright:
+            <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="{% static '/Javascript/Admission System - Main Window.js' %}"></script>
+    <script>
+        const sections = document.querySelectorAll("section");
+        const navLi = document.querySelectorAll(".nav-link");
+        window.onscroll = () => {
+            var current = "";
+
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLi.forEach((li) => {
+                li.classList.remove("active");
+                if (li.href.includes(current)) {
+                    li.classList.add('active');
+                }
+            });
+        };
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {% for message in messages %}
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: '{{message}}',
+            confirmButtonText: "Ok",
+            confirmButtonColor: '#EF3A25',
+        }).then(function() {
+            window.location = "{% url 'loginPage' %}";
+        });
+    </script>
+    {% endfor %}
+</body>
+
+</html>

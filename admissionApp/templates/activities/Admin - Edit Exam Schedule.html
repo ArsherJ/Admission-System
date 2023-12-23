@@ -1,0 +1,34 @@
+{% extends 'activities/Admin - Delete Confirmation.html' %}
+{% load static %}
+            {% block content %}
+            <h2 class="modal-title fa fa-user-edit" style="color: white;" id="exampleModalLabel">Edit Information</h2>
+            <hr id="whitehr">
+            <div class="card" style="padding: 3%; border-radius: 5px;">
+                <div class="card-body">
+                    
+                    <form method="POST">
+                        {% csrf_token %}
+                        
+                        <div class="md-form">
+                            <label id="user-lbl" data-error="wrong" data-success="right" style="color: black;">Exam Date:</label>
+                            {{ form.exam_date }}
+                        </div>
+                        <div class="md-form">
+                            <label id="user-lbl" data-error="wrong" data-success="right" style="color: black;">Exam Time:</label>
+                            {{ form.exam_time }}
+                        </div>
+                        <div class="md-form">
+                            <label id="user-lbl" data-error="wrong" data-success="right" style="color: black;">Room Assignment:</label>
+                            {{ form.room }}
+                        </div>    
+                        <div class="mt-4 text-end">
+                            <a href="{% url 'tupadmin_examschedule' %}"><button type="button" style="background-color: #3a3939; color: white;" class="btn">Back</button></a>
+                            <button type="submit" style="background-color: #EF3A25; color: white;" class="btn">Save changes</button>
+                        </div>
+                        
+                    </form>
+        </div>
+        </div>
+        </div>
+    </div>
+    {% endblock %}

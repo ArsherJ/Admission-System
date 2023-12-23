@@ -1,0 +1,212 @@
+{% load static %}
+<!doctype html> 
+<html lang="en">
+
+<head>
+    <!--  meta tags  -->
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/pdf-lib@1.4.0"></script>
+    <script src="https://unpkg.com/downloadjs@1.4.7"></script>
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="{% static '/CSS/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/CSS/Admission Perspective - Home.css' %}">
+    <script src="{% static '/Javascript/js/jquery.min.js' %}"></script>
+    <!-- icon library  -->
+    <link rel="stylesheet" href="{% static '/CSS/font-awesome/css/all.min.css' %}">
+    <link rel="icon" href="{% static '/Media/logo.svg' %}" type="image/x-icon">
+    
+    <title>
+        Technological University of the Philippines - Cavite
+    </title>
+</head>
+
+<body>
+    <header class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div id="main">
+                <span style="font-size:30px;cursor:pointer;position:fixed;top:5px;" id="navButton" onclick="openOffcanvas()">&#9776;</span>
+            </div>
+            <div class="container">
+                <a href="#" style="margin-left:40px;"><img src="{% static '/Media/logo.png' %}" width="37.5" height="37.5" alt="tup_logo"></a>
+                <a class="hide-nav navbar-brand" href="#" style="position:fixed;margin-left:90px;"> Technological University of the Philippines - Cavite</a>
+                <div class="dropdown-container" style="position: relative;">
+                    <button class="btn dropdown-toggle" type="button" id="Hdropdown" data-bs-toggle="dropdown"><i class="fa fa-fw fa-user"></i>Applicant</button>
+                    <ul class="dropdown-menu" id="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+                    </ul>
+                </div>
+                </button>
+            </div>
+        </nav>
+    </header>
+    <!-- Side Nav-->
+
+    <div id="mySidenav" class="sidenav bg-light">
+        <ul class="list-unstyled ps-0">
+            <div class="buttons">
+                <a id="home" href="{% url 'applicant_home' %}"><i class="fa fa-fw fa-home"></i>Home</a>
+                <a href="{% url 'applicant_result' %}"><i class="fas fa-list-alt"></i>View Results</a>
+                <a href="{% url 'applicant_pdf' %}"><i class="fas fa-file-pdf"></i>Report PDF</a>
+                <a href="{% url 'applicant_compose' %}"><i class="fas fa-envelope"></i>Message</a>
+            </div>
+            <br>
+        </ul>
+    </div>
+    <div id="myCanvasNav" class="overlay3" onclick="closeOffcanvas()"></div>
+    <!-- DASHBOARD -->
+    <div id="grid" class="container-fluid">
+        <div class="container-grid">
+            {% block content %}   
+            <div id="aphcontent" class="content">
+                <br>
+                <br>
+                <h4>Welcome {{ request.user.first_name }} {{ request.user.applicant.middle_name }} {{ request.user.last_name }}!</h4>
+                <hr id="whitehr">
+                <div>
+                    <div class="container">
+                        <div class="card" id="infocard">
+                            <h3 class="card-title" id="aphtitle">Applicant's Information</h3>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <span>
+                      Name : {{ request.user.first_name }} {{ request.user.applicant.middle_name }} {{ request.user.last_name }}
+                    </span>
+                                    <br>
+                                    <span>
+                      Course(1st Choice) : {{ request.user.applicant.appli_course }}
+                    </span>
+                                    <br>
+                                    <span>
+                    Sex : {{ request.user.applicant.appli_sex }}
+                    </span>
+                                    <br>
+                                </div>
+                                <div class="col-sm-6">
+
+                                    <span>
+                      SHS Track/Strand : {{ request.user.applicant.appli_strand }}
+                    </span>
+                                    <br>
+                                    <span>
+                      Date of Application : {{ request.user.date_joined.date }}
+                    </span>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                        <hr id="whitehr">
+                    </div>
+                </div>
+                <div id="dbcards" class="container">
+                    <div id="aphrow" class="row">
+
+                        <div class="col-sm-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title"><i class="fas fa-file-alt" style="color:rgb(11, 11, 12); position:relative; margin-right:10px;"></i>Exam Score</h5>
+                                    <hr>
+                                    <p class="card-text">{{ request.user.applicant.applicant_requirements.score }}%</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="col-sm-3">
+                            <div class="card">
+                                
+                                <div class="card-body">
+                                    {% if request.user.applicant.applicant_requirements.inter_status == 'Passed' %}
+                                    <h5 class="card-title"><i class="fas fa-check-circle" style="color:green; position:relative; margin-right:10px;"></i>Interview Status</h5>
+                                    <hr>
+                                    <p class="card-text">{{ request.user.applicant.applicant_requirements.inter_status }}</p>
+
+                                    {% elif request.user.applicant.applicant_requirements.inter_status == 'On Going' %}
+                                    <h5 class="card-title"><i class="fas fa-spinner" style="color:orange; position:relative; margin-right:10px;"></i>Interview Status</h5>
+                                    <hr>
+                                    <p class="card-text">{{ request.user.applicant.applicant_requirements.inter_status }}</p>
+
+                                    {% else %}
+                                    <h5 class="card-title"><i class="fas fa-times-circle" style="color:red; position:relative; margin-right:10px;"></i>Interview Status</h5>
+                                    <hr>
+                                    <p class="card-text">{{ request.user.applicant.applicant_requirements.inter_status }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="card">
+                                <div class="card-body container-fluid">
+                                    {% if request.user.applicant.applicant_requirements.medical_status == 'Passed' %}
+                                    <h5 class="card-title"><i class="fas fa-check-circle" style="color:green; position:relative; margin-right:10px;"></i>Medical Status</h5>
+                                    <hr>
+                                    <p class="card-text">{{ request.user.applicant.applicant_requirements.medical_status }}</p>
+
+                                    {% elif request.user.applicant.applicant_requirements.medical_status == 'On Going' %}
+                                    <h5 class="card-title"><i class="fas fa-spinner" style="color:orange; position:relative; margin-right:10px;"></i>Medical Status</h5>
+                                    <hr>
+                                    <p class="card-text">{{ request.user.applicant.applicant_requirements.medical_status }}</p>
+
+                                    {% else %}
+                                        <h5 class="card-title"><i class="fas fa-times-circle" style="color:red; position:relative; margin-right:10px;"></i>Medical Status</h5>
+                                        <hr>
+                                        <p class="card-text">{{ request.user.applicant.applicant_requirements.medical_status }}</p>
+
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    {% if request.user.applicant.applicant_requirements.main_status == 'Passed' %}
+                                    <h5 class="card-title"><i class="fas fa-check-circle" style="color:green; position:relative; margin-right:10px;"></i>Application Status</h5>
+                                    <hr>
+                                    <p class="card-text">{{ request.user.applicant.applicant_requirements.main_status }}</p>
+
+                                    {% elif request.user.applicant.applicant_requirements.main_status == 'On Going' %}
+                                    <h5 class="card-title"><i class="fas fa-spinner" style="color:orange; position:relative; margin-right:10px;"></i>Application Status</h5>
+                                    <hr>
+                                    <p class="card-text">{{ request.user.applicant.applicant_requirements.main_status }}</p>
+
+                                    {% else %}
+                                    <h5 class="card-title"><i class="fas fa-times-circle" style="color:red; position:relative; margin-right:10px;"></i>Application Status</h5>
+                                    <hr>
+                                    <p class="card-text">{{ request.user.applicant.applicant_requirements.main_status }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static '/Javascript/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static '/Javascript/js/functions.js' %}"></script>
+</body>
+{% endblock %}
+<!-- Footer  -->
+<footer id="footer" class="py-4 bg-light mt-auto">
+    <div class="px-4">
+        <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Copyright &copy;
+                <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+            </div>
+            <div>
+                <i class="fa fa-phone-square"></i>
+                <a>Privacy Policy</a> &middot;
+                <a>Terms &amp; Conditions</a> &middot;
+                <a>Contact Us</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>
