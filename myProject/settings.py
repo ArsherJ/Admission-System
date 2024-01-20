@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=14p@v2kvwzwt5ar(v(f!6dm1f+vcw7o6x$j3)zgq+_dmtb4cs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['tupc-admission.herokuapp.com', '127.0.0.1']
 
@@ -79,26 +79,26 @@ ASGI_APPLICATION = 'myProject.asgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
-  'default': {
-  'ENGINE': 'django.db.backends.mysql',
-  'NAME': 'heroku_9a67aa552b22e4b',
-  'USER': 'b83e44a316b416',
-  'PASSWORD': "09466c8e",
-  'HOST': "us-cdbr-east-06.cleardb.net",
-  'PORT': "3306",
-  'OPTIONS': {
-      'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-      }
-   }
- }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+# DATABASES = {
+#   'default': {
+#   'ENGINE': 'django.db.backends.mysql',
+#   'NAME': 'heroku_9a67aa552b22e4b',
+#   'USER': 'b83e44a316b416',
+#   'PASSWORD': "09466c8e",
+#   'HOST': "us-cdbr-east-06.cleardb.net",
+#   'PORT': "3306",
+#   'OPTIONS': {
+#       'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+#       }
+#    }
+#  }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -136,11 +136,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
-MEDIA_URL = '/Media/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'admissionApp/static')
-]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = 'static/'
+MEDIA_URL = 'Media/'
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'admissionApp/static')
+# ]
 
 
 # Default primary key field type
